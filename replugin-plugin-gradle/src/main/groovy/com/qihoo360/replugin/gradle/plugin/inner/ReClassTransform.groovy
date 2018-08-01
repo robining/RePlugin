@@ -246,7 +246,11 @@ public class ReClassTransform extends Transform {
             destName = destName.substring(0, destName.length() - 4)
         }
         File dest = output.getContentLocation(destName + '_' + hexName, input.contentTypes, input.scopes, Format.JAR)
-        FileUtils.copyFile(jar, dest)
+        if (jar.exists()) {
+            FileUtils.copyFile(jar, dest)
+        }else {
+            println ">>> jar file is not exist! Ignore!";
+        }
 
 /*
         def path = jar.absolutePath

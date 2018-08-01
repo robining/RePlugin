@@ -128,7 +128,12 @@ public class Util {
      * 压缩 dirPath 到 zipFilePath
      */
     def static zipDir(String dirPath, String zipFilePath) {
-        new AntBuilder().zip(destfile: zipFilePath, basedir: dirPath)
+        File file = new File(dirPath);
+        if(file.exists()){
+            new AntBuilder().zip(destfile: zipFilePath, basedir: dirPath)
+        }else {
+            println ">>> dirPath is not exist! Ignore!";
+        }
     }
 
     /**
